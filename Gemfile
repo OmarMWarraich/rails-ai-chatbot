@@ -74,4 +74,4 @@ group :test do
 
 end
 
-gem "open-ai", "~> 0.1
+gem "open-ai", "~> 0.2"

@@ -74,4 +74,5 @@ group :test do
 
 end
 
-gem "open-ai", "~> 0.2"
+gem 'openai', '~> 0.2.0'
+gem 'dotenv-rails', groups: [:development, :test]

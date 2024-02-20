@@ -78,3 +78,4 @@ gem 'openai', '~> 0.2.0'
 gem 'dotenv-rails', groups: [:development, :test]
 
 gem 'devise'
+gem "ruby-openai", "~> 6.3"

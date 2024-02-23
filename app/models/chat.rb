@@ -23,9 +23,18 @@ class Chat < ApplicationRecord
   attr_accessor :message
 
   def message=(message)
+    self.history = { 'prompt' => message, 'history' => [] } if history.blank?
+
     messages = [
-      { 'role' => 'system', 'content' => message }
+      { 'role' => 'system', 'content' => history['prompt'] }
     ]
+    q_and_a.each do |question, answer|
+      messages << { 'role' => 'user', 'content' => question }
+      messages << { 'role' => 'assistant', 'content' => answer }
+    end
+    messages << { 'role' => 'user', 'content' => message } if messages.size > 1
+
+
     response_raw = client.chat(
       parameters: {
         model: 'gpt-4',
@@ -38,9 +47,12 @@ class Chat < ApplicationRecord
       }
     )
 
-    Rails.logger.debug response_raw
 
+    self.history['history'] << response_raw
+
+    Rails.logger.debug response_raw
     response = JSON.parse(response_raw.to_json, object_class: OpenStruct)
+
     self.q_and_a << [message, response.choices[0].message.content]
   end
 

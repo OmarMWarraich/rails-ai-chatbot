@@ -1,14 +1,5 @@
-<div class="w-full">
-  <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-  <% end %>
-
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Chats</h1>
-    <%= link_to "New chat", new_chat_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
-  </div>
-
-  <div id="chats" class="min-w-full">
-    <%= render @chats %>
-  </div>
-</div>
+<p style="color: green"><%= notice %></p>
+You don't have any chats yet. Create one by clicking
+<%= form_with(model: Chat.new) do |form| %>
+  <%= form.submit 'Here', class: 'text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700' %>
+<% end %>

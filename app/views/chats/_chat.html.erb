@@ -1,22 +1,34 @@
-<div id="<%= dom_id chat %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">User:</strong>
-    <%= chat.user_id %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">History:</strong>
-    <%= chat.history %>
-  </p>
-
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Q and a:</strong>
-    <%= chat.q_and_a %>
-  </p>
-
-  <% if action_name != "show" %>
-    <%= link_to "Show this chat", chat, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to "Edit this chat", edit_chat_path(chat), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
+<turbo-frame id="current-chat">
+  <div id="<%= dom_id chat %>" class="container">
+    <div id="history-area" class="h-full">
+      <% unless chat.q_and_a.blank? %>
+        <% chat.q_and_a.each do |question, answer|%>
+          <div class='flex flex-row mb-2'>
+            <div class='w-1/12'>
+              You
+            </div>
+            <div class='w-11/12'>
+              <%=simple_format question %>
+            </div>
+          </div>
+          <div class='flex flex-row mb-2'>
+            <div class='w-1/12'>
+              OpenAI
+            </div>
+            <div class='w-11/12'>
+              <%=simple_format answer %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <%= form_with(model: chat) do |form| %>
+    <div class="flex items-center mb-3">
+      <%= form.text_field :message, placeholder: 'Send a message', class: 'form-input flex-grow mr-2' %>
+      <%= form.button class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2' do %>
+        <i class="bi bi-send"></i>
+      <% end %>
+    </div>
   <% end %>
-</div>
+</turbo-frame>

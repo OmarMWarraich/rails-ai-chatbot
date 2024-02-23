@@ -79,3 +79,5 @@ gem 'dotenv-rails', groups: [:development, :test]
 
 gem 'devise'
 gem "ruby-openai", "~> 6.3"
+
+gem "annotate", "~> 3.2", :group => :development

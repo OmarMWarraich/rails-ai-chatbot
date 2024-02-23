@@ -1,5 +1,13 @@
-<div class="row">
-    <div class="column">
-        <%= chat_list.id %>
-    </div>
+<div class='flex w-full border-b border-white text-white'>
+  <div class='flex-1'>
+    <%= link_to chat_list, data: { turbo_frame: "_top" }, class: 'flex items-center' do %>
+      <i class="bi bi-chat mr-2"></i>
+      <%= list_name(chat_list) %>
+    <% end %>
+  </div>
+  <div class='flex items-center'>
+    <%= button_to @chat, method: :delete, data: { turbo_frame: "_top" }, class: 'border-none btn btn-dark p-0' do %>
+      <i class="bi bi-trash"></i>
+    <% end %>
+  </div>
 </div>

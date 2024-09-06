@@ -37,7 +37,7 @@ class Chat < ApplicationRecord
 
     response_raw = client.chat(
       parameters: {
-        model: 'gpt-4',
+        model: 'gpt-4o-mini',
         messages:,
         temperature: 0.7,
         max_tokens: 500,
@@ -61,5 +61,5 @@ class Chat < ApplicationRecord
   def client
     OpenAI::Client.new
   end
-  
+
 end

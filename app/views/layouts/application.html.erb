@@ -19,7 +19,7 @@
         <div class="flex-col w-52 bg-gray-900 text-white">
           <div class="container mx-auto py-5">
             <div class="flex-col items-center justify-between px-12">
-              <%= image_tag(current_user.avatar_url, class: 'w-12 h-12 rounded-full mx-auto cursor-pointer') %>
+              <%# image_tag(current_user.avatar_url, class: 'w-12 h-12 rounded-full mx-auto cursor-pointer') %>
               <%= form_with(model: Chat.new) do |form| %>
                 <%= form.submit '+ New Chat', class: 'text-white mt-2 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800 mt-4' %>
               <% end %>

@@ -1,25 +1,22 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: <%= ENV['POSTGRES_HOST'] %>
+  username: <%= ENV['POSTGRES_DBUSER'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
+  port: <%= ENV['POSTGRES_PORT'] %>
+  pool: 5
 
 development:
   <<: *default
   database: open_ai_development
-  host: <%= ENV["POSTGRES_HOST"] %>
-  port: <%= ENV["POSTGRES_PORT"] %>
-  username: <%= ENV["POSTGRES_DBUSER"] %>
-  password: <%= ENV["POSTGRES_PASSWORD"] %>
 
 test:
   <<: *default
   database: open_ai_test
-  host: <%= ENV["POSTGRES_HOST"] %>
-  port: <%= ENV["POSTGRES_PORT"] %>
-  username: <%= ENV["POSTGRES_DBUSER"] %>
-  password: <%= ENV["POSTGRES_PASSWORD"] %>
 
 production:
   <<: *default
   database: open_ai_production
-  url: <%= ENV["DATABASE_URL"] %>
+  username: open_ai
+  password: <%= ENV['OPEN_AI_DATABASE_PASSWORD'] %>
